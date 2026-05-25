@@ -89,15 +89,15 @@ export default function Collection() {
         </div>
       </section>
 
-      <div className="max-w-7xl mx-auto px-8 py-16">
-        <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-12 pb-8 border-b" style={{ borderWidth: '0.5px' }}>
-          <div className="flex items-center gap-8">
-            <div className="flex items-center gap-3">
-              <Filter className="w-5 h-5 text-muted-foreground" />
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-16">
+        <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6 mb-10 sm:mb-12 pb-8 border-b" style={{ borderWidth: '0.5px' }}>
+          <div className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4 lg:gap-8 min-w-0">
+            <div className="flex items-center gap-3 min-w-0">
+              <Filter className="w-5 h-5 text-muted-foreground flex-shrink-0" />
               <select
                 value={filterGenre}
                 onChange={(e) => setFilterGenre(e.target.value)}
-                className="px-4 py-2 border text-sm tracking-wider uppercase bg-white focus:outline-none focus:ring-1 focus:ring-accent"
+                className="w-full sm:w-auto min-w-0 px-4 py-2 border text-xs sm:text-sm tracking-wider uppercase bg-white focus:outline-none focus:ring-1 focus:ring-accent"
                 style={{ borderWidth: '0.5px' }}
               >
                 {genres.map((genre) => (
@@ -111,7 +111,7 @@ export default function Collection() {
             <select
               value={filterStatus}
               onChange={(e) => setFilterStatus(e.target.value)}
-              className="px-4 py-2 border text-sm tracking-wider uppercase bg-white focus:outline-none focus:ring-1 focus:ring-accent"
+              className="w-full sm:w-auto min-w-0 px-4 py-2 border text-xs sm:text-sm tracking-wider uppercase bg-white focus:outline-none focus:ring-1 focus:ring-accent"
               style={{ borderWidth: '0.5px' }}
             >
               <option value="tous">Tous les statuts</option>
@@ -119,22 +119,22 @@ export default function Collection() {
               <option value="emprunte">Emprunté</option>
             </select>
 
-            <div className="text-sm text-muted-foreground">
+            <div className="text-xs sm:text-sm text-muted-foreground">
               {availableCount} sur {filteredBooks.length} disponibles
             </div>
           </div>
 
-          <div className="flex items-center gap-4">
+          <div className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4">
             <div className="flex border" style={{ borderWidth: '0.5px' }}>
               <button
                 onClick={() => setViewMode('grille')}
-                className={`p-3 transition-colors ${viewMode === 'grille' ? 'bg-primary text-primary-foreground' : 'hover:bg-muted'}`}
+                className={`flex-1 sm:flex-none p-3 transition-colors ${viewMode === 'grille' ? 'bg-primary text-primary-foreground' : 'hover:bg-muted'}`}
               >
                 <Grid3x3 className="w-4 h-4" />
               </button>
               <button
                 onClick={() => setViewMode('liste')}
-                className={`p-3 transition-colors border-l ${viewMode === 'liste' ? 'bg-primary text-primary-foreground' : 'hover:bg-muted'}`}
+                className={`flex-1 sm:flex-none p-3 transition-colors border-l ${viewMode === 'liste' ? 'bg-primary text-primary-foreground' : 'hover:bg-muted'}`}
                 style={{ borderWidth: '0.5px' }}
               >
                 <List className="w-4 h-4" />
@@ -144,7 +144,7 @@ export default function Collection() {
             {isAdmin ? (
               <button
                 onClick={() => setShowForm(!showForm)}
-                className="flex items-center gap-2 px-6 py-3 bg-primary text-primary-foreground text-sm tracking-widest uppercase hover:bg-accent hover:text-accent-foreground transition-colors duration-300"
+                className="flex items-center justify-center gap-2 px-4 sm:px-6 py-3 bg-primary text-primary-foreground text-xs sm:text-sm tracking-widest uppercase hover:bg-accent hover:text-accent-foreground transition-colors duration-300"
               >
                 {showForm ? <X className="w-4 h-4" /> : <Plus className="w-4 h-4" />}
                 {showForm ? 'Annuler' : 'Ajouter un livre'}
@@ -153,7 +153,7 @@ export default function Collection() {
               <Link
                 to="/connexion"
                 state={{ from: '/collection' }}
-                className="flex items-center gap-2 px-6 py-3 border text-sm tracking-widest uppercase text-muted-foreground hover:bg-foreground hover:text-background transition-colors duration-300"
+                className="flex items-center justify-center gap-2 px-4 sm:px-6 py-3 border text-xs sm:text-sm tracking-widest uppercase text-muted-foreground hover:bg-foreground hover:text-background transition-colors duration-300"
                 style={{ borderWidth: '0.5px' }}
                 title="Réservé aux administrateurs"
               >
@@ -297,26 +297,26 @@ export default function Collection() {
         ) : (
           <div className="space-y-6">
             {filteredBooks.map((book) => (
-              <div key={book.id} className="bg-white border p-8 hover:shadow-lg transition-shadow duration-500 flex gap-8" style={{ borderWidth: '0.5px' }}>
-                <Link to={`/collection/${book.id}`} className="w-32 h-44 flex-shrink-0 overflow-hidden block">
+              <div key={book.id} className="bg-white border p-4 sm:p-6 lg:p-8 hover:shadow-lg transition-shadow duration-500 flex flex-col sm:flex-row gap-5 sm:gap-6 lg:gap-8" style={{ borderWidth: '0.5px' }}>
+                <Link to={`/collection/${book.id}`} className="w-full sm:w-28 lg:w-32 aspect-[3/4] sm:h-40 lg:h-44 flex-shrink-0 overflow-hidden block bg-muted">
                   <ImageWithFallback
                     src={book.coverImage}
                     alt={book.title}
                     className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
                   />
                 </Link>
-                <div className="flex-1">
+                <div className="flex-1 min-w-0">
                   <Link to={`/collection/${book.id}`} className="hover:text-accent transition-colors">
-                    <h3 className="text-2xl mb-2" style={{ fontFamily: 'var(--font-serif)' }}>
+                    <h3 className="text-xl sm:text-2xl mb-2 break-words" style={{ fontFamily: 'var(--font-serif)' }}>
                       {book.title}
                     </h3>
                   </Link>
                   <p className="text-sm text-muted-foreground mb-4">{book.author}</p>
-                  <p className="text-sm text-muted-foreground leading-relaxed mb-4">
+                  <p className="text-sm text-muted-foreground leading-relaxed mb-4 line-clamp-3">
                     {book.description}
                   </p>
-                  <div className="flex items-center gap-4 mt-4 flex-wrap">
-                    <div className="flex items-center gap-6 text-xs tracking-wider">
+                  <div className="flex flex-col lg:flex-row lg:items-center gap-4 mt-4">
+                    <div className="flex items-center gap-3 sm:gap-6 text-xs tracking-wider flex-wrap">
                       <span className="uppercase text-muted-foreground">{book.genre}</span>
                       <span className="text-muted-foreground">·</span>
                       <span className="uppercase text-muted-foreground">{book.year}</span>
@@ -325,7 +325,7 @@ export default function Collection() {
                         {book.available ? 'Disponible' : 'Emprunté'}
                       </span>
                     </div>
-                    <div className="flex items-center gap-2 ml-auto">
+                    <div className="flex items-center gap-2 lg:ml-auto flex-wrap">
                       <button onClick={() => dispatch(toggleFavorite(book.id))}
                         className={`p-2 border transition-colors ${favorites.includes(book.id) ? 'border-red-300 bg-red-50 text-red-500' : 'border-muted-foreground/20 hover:border-red-300 hover:text-red-500'}`}
                         style={{ borderWidth: '0.5px' }}>
@@ -338,7 +338,7 @@ export default function Collection() {
                         {cart.some(c => c.bookId === book.id) ? <Check className="w-4 h-4" /> : <ShoppingCart className="w-4 h-4" />}
                       </button>
                       <Link to={`/collection/${book.id}`}
-                        className="px-4 py-2 bg-primary text-primary-foreground text-xs tracking-widest uppercase hover:bg-accent hover:text-accent-foreground transition-colors">
+                        className="flex-1 sm:flex-none text-center px-4 py-2 bg-primary text-primary-foreground text-xs tracking-widest uppercase hover:bg-accent hover:text-accent-foreground transition-colors">
                         Voir les détails
                       </Link>
                     </div>
@@ -347,7 +347,7 @@ export default function Collection() {
                 {isAdmin && (
                   <button
                     onClick={() => handleDelete(book.id)}
-                    className="p-3 h-fit hover:bg-muted transition-colors"
+                    className="p-3 h-fit self-start sm:self-auto hover:bg-muted transition-colors"
                     aria-label="Supprimer le livre"
                   >
                     <X className="w-5 h-5" />
