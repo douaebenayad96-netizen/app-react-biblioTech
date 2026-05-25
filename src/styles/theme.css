@@ -186,3 +186,67 @@
     line-height: 1.5;
   }
 }
+
+@layer utilities {
+  @media (max-width: 640px) {
+    html,
+    body,
+    #root {
+      overflow-x: hidden;
+    }
+
+    .text-8xl {
+      font-size: 3.75rem;
+      line-height: 1.05;
+    }
+
+    .text-7xl {
+      font-size: 3.25rem;
+      line-height: 1.08;
+    }
+
+    .text-6xl {
+      font-size: 2.75rem;
+      line-height: 1.12;
+    }
+
+    .text-5xl {
+      font-size: 2.35rem;
+      line-height: 1.16;
+    }
+
+    .text-4xl {
+      font-size: 2rem;
+      line-height: 1.2;
+    }
+
+    .px-8 {
+      padding-left: 1rem;
+      padding-right: 1rem;
+    }
+
+    .py-48 {
+      padding-top: 6rem;
+      padding-bottom: 6rem;
+    }
+
+    .py-32 {
+      padding-top: 5rem;
+      padding-bottom: 5rem;
+    }
+
+    .py-24 {
+      padding-top: 4rem;
+      padding-bottom: 4rem;
+    }
+
+    .h-\[40vh\] {
+      height: min(360px, 44svh);
+      min-height: 280px;
+    }
+
+    .tracking-\[0\.3em\] {
+      letter-spacing: 0.16em;
+    }
+  }
+}

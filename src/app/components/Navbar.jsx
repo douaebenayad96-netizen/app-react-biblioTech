@@ -57,10 +57,11 @@ export default function Navbar() {
     : memberLinks;
 
   const allLinks = [...publicLinks, ...visibleProtectedLinks];
+  const protectedLinks = [...memberLinks, ...adminLinks];
 
   return (
     <nav className="sticky top-0 z-50 backdrop-blur-sm bg-background/90 border-b" style={{ borderWidth: '0.5px' }}>
-      <div className="max-w-7xl mx-auto px-8 py-5">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 lg:py-5">
         <div className="flex items-center justify-between">
 
           {/* Logo */}
@@ -70,7 +71,7 @@ export default function Navbar() {
           </Link>
 
           {/* Liens desktop */}
-          <div className="hidden lg:flex items-center gap-8">
+          <div className="hidden lg:flex items-center gap-6 xl:gap-8">
             {publicLinks.map((link) => (
               <Link
                 key={link.path}
@@ -118,7 +119,7 @@ export default function Navbar() {
           </div>
 
           {/* Zone auth desktop */}
-          <div className="hidden lg:flex items-center gap-3">
+          <div className="hidden lg:flex items-center gap-2 xl:gap-3">
             {user ? (
               /* Menu utilisateur connecté */
               <div className="relative" ref={dropdownRef}>
@@ -211,7 +212,7 @@ export default function Navbar() {
 
         {/* Menu mobile */}
         {menuOpen && (
-          <div className="lg:hidden pt-6 pb-4 border-t mt-5 space-y-1" style={{ borderWidth: '0.5px' }}>
+          <div className="lg:hidden pt-6 pb-4 border-t mt-4 space-y-1" style={{ borderWidth: '0.5px' }}>
             {allLinks.map((link) => {
               const isProtected = protectedLinks.some((l) => l.path === link.path);
               const isLocked = isProtected && !user;
